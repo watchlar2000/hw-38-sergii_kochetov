@@ -29,16 +29,14 @@ export const Todos = () => {
     }
   };
 
-  const removeTodo = (e) => {
+  const removeTodo = (id) => {
     const isSure = window.confirm('You sure?');
-    const { id } = e.target.closest('li').dataset;
     if (isSure) {
       setTodos((prevState) => prevState.filter((todo) => todo.id !== id));
     }
   };
 
-  const changeComplete = (e) => {
-    const { id } = e.target.closest('li').dataset;
+  const changeComplete = (id) => {
     setTodos((prevState) =>
       prevState.map((todo) => {
         if (todo.id === id) {
