@@ -1,50 +1,65 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './Todos.css';
-import { TodosForm } from './TodosForm';
-import { TodosList } from './TodosList';
+import { TodosForm } from './TodosForm/TodosForm';
+import { TodosList } from './TodosList/TodosList';
+import { useDispatch, useSelector } from 'react-redux/es/exports';
+
+import { addTodo, getTodos, removeTodo, updateTodo } from './todosApi';
+import {
+  addTodoAction,
+  removeTodoAction,
+  setTodosAction,
+  updateTodoAction,
+} from '../../store/actions/todos.actions';
 
 export const Todos = () => {
-  const [todos, setTodos] = useState([]);
+  const todos = useSelector((state) => state.todos.items);
 
-  const saveToLocalStorage = (data, name) => {
-    localStorage.setItem(name, JSON.stringify(data));
-  };
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const todosLocal = JSON.parse(localStorage.getItem('todos'));
-    if (todosLocal.length !== 0) {
-      setTodos(todosLocal);
+    async function getTodosInfo() {
+      try {
+        const todosData = await getTodos();
+        const todosReversed = todosData.reverse();
+        dispatch(setTodosAction(todosReversed));
+      } catch (error) {
+        console.error(error);
+      }
     }
-  }, []);
 
-  useEffect(() => {
-    saveToLocalStorage(todos, 'todos');
-  }, [todos]);
+    getTodosInfo();
+  }, [dispatch]);
 
-  const addNewTodo = (todo) => {
-    if (todos !== null) {
-      setTodos((prevState) => [todo, ...prevState]);
-    } else {
-      setTodos([todo]);
+  const addNewTodo = async (todo) => {
+    try {
+      const newTodo = await addTodo(todo);
+      dispatch(addTodoAction(newTodo));
+    } catch (error) {
+      console.error(error);
     }
   };
 
-  const removeTodo = (id) => {
+  const removeTodoById = async (id) => {
     const isSure = window.confirm('You sure?');
+
     if (isSure) {
-      setTodos((prevState) => prevState.filter((todo) => todo.id !== id));
+      try {
+        await removeTodo(id);
+        dispatch(removeTodoAction({ id }));
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
-  const changeComplete = (id) => {
-    setTodos((prevState) =>
-      prevState.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, isCompleted: !todo.isCompleted };
-        }
-        return todo;
-      })
-    );
+  const changeComplete = async (id) => {
+    try {
+      await updateTodo(id);
+      dispatch(updateTodoAction({ id }));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -53,7 +68,7 @@ export const Todos = () => {
       <TodosForm addNewTodo={addNewTodo} />
       <TodosList
         todos={todos}
-        removeTodo={removeTodo}
+        removeTodo={removeTodoById}
         changeComplete={changeComplete}
       />
     </div>

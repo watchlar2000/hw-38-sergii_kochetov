@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const TodosItem = ({ todo, removeTodo, changeComplete }) => {
   return (
     <li key={todo.id} className="todos-item">

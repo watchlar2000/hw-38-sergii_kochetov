@@ -1,0 +1,34 @@
+{
+  "todos": [
+    {
+      "id": "6372b8042053d85b53844b6b",
+      "task": "elit veniam laboris pariatur cupidatat ex duis",
+      "emoji": "🏡",
+      "isCompleted": false
+    },
+    {
+      "id": "6372b804b5808e8c266dbe6d",
+      "task": "culpa nisi fugiat tempor Lorem veniam et",
+      "emoji": "🐶",
+      "isCompleted": true
+    },
+    {
+      "id": "6372b8040a6bbbf72433d735",
+      "task": "ad velit in deserunt laborum esse minim",
+      "emoji": "⏰",
+      "isCompleted": true
+    },
+    {
+      "id": "6372b804e1bd67c3b4795150",
+      "task": "elit eiusmod duis sunt laborum cupidatat nostrud",
+      "emoji": "☕️",
+      "isCompleted": true
+    },
+    {
+      "id": "6372b804c0865aea4ca30b5c",
+      "task": "aliquip officia id duis fugiat irure sit",
+      "emoji": "🏀",
+      "isCompleted": true
+    }
+  ]
+}
