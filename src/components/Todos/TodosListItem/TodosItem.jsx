@@ -3,10 +3,10 @@ export const TodosItem = ({ todo, removeTodo, changeComplete }) => {
     <li key={todo.id} className="todos-item">
       <input
         type="checkbox"
-        checked={todo.isCompleted}
+        checked={todo.completed}
         onChange={() => changeComplete(todo.id)}
       />
-      <span className={`todos-content ${todo.isCompleted ? ' completed' : ''}`}>
+      <span className={`todos-content ${todo.completed ? ' completed' : ''}`}>
         {todo.task + ` ${todo?.emoji !== undefined ? todo.emoji : ''}`}
       </span>
       <button

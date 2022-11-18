@@ -1,5 +1,7 @@
 # Todo's List App
 
+![todos](./public/todos.jpg)
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -11,7 +13,7 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-JSON-server is listening on [http://localhost:3999](http://localhost:3999).
+JSON-server is listening on [http://localhost:3004](http://localhost:3004).
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.

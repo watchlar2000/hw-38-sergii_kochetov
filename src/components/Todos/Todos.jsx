@@ -4,12 +4,11 @@ import { TodosForm } from './TodosForm/TodosForm';
 import { TodosList } from './TodosList/TodosList';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 
-import { addTodo, getTodos, removeTodo, updateTodo } from './todosApi';
 import {
-  addTodoAction,
-  removeTodoAction,
-  setTodosAction,
-  updateTodoAction,
+  addTodoRequestAction,
+  removeTodoRequestAction,
+  setTodosRequestAction,
+  updateTodoRequestAction,
 } from '../../store/actions/todos.actions';
 
 export const Todos = () => {
@@ -18,48 +17,23 @@ export const Todos = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    async function getTodosInfo() {
-      try {
-        const todosData = await getTodos();
-        const todosReversed = todosData.reverse();
-        dispatch(setTodosAction(todosReversed));
-      } catch (error) {
-        console.error(error);
-      }
-    }
+    dispatch(setTodosRequestAction());
+  }, []);
 
-    getTodosInfo();
-  }, [dispatch]);
-
-  const addNewTodo = async (todo) => {
-    try {
-      const newTodo = await addTodo(todo);
-      dispatch(addTodoAction(newTodo));
-    } catch (error) {
-      console.error(error);
-    }
+  const addNewTodo = (todo) => {
+    dispatch(addTodoRequestAction(todo));
   };
 
   const removeTodoById = async (id) => {
     const isSure = window.confirm('You sure?');
 
     if (isSure) {
-      try {
-        await removeTodo(id);
-        dispatch(removeTodoAction({ id }));
-      } catch (error) {
-        console.error(error);
-      }
+      dispatch(removeTodoRequestAction(id));
     }
   };
 
-  const changeComplete = async (id) => {
-    try {
-      await updateTodo(id);
-      dispatch(updateTodoAction({ id }));
-    } catch (error) {
-      console.error(error);
-    }
+  const changeComplete = (id) => {
+    dispatch(updateTodoRequestAction(id));
   };
 
   return (

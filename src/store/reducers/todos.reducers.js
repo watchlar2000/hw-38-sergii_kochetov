@@ -21,7 +21,7 @@ export default function todosReducer(state = initialState, { type, payload }) {
     case UPDATE_TODO:
       const updatedItems = state.items.map((item) => {
         if (item.id === payload.id) {
-          item.isCompleted = !item.isCompleted;
+          item.completed = !item.completed;
         }
         return item;
       });

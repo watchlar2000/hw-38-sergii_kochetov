@@ -1,4 +1,4 @@
-const URL = 'http://localhost:3999';
+const URL = 'http://localhost:3004';
 
 export async function getTodos() {
   const res = await fetch(`${URL}/todos`);
@@ -26,7 +26,7 @@ export async function updateTodo(id) {
 
   await fetch(`${URL}/todos/${id}`, {
     method: 'PATCH',
-    body: JSON.stringify({ isCompleted: !getTodoById.isCompleted }),
+    body: JSON.stringify({ completed: !getTodoById.completed }),
     headers: {
       'Content-type': 'application/json',
     },

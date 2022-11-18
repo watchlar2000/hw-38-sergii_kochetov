@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import { v4 } from 'uuid';
 
 export const TodosForm = ({ addNewTodo }) => {
   const [newTodo, setNewTodo] = useState({
@@ -13,9 +12,8 @@ export const TodosForm = ({ addNewTodo }) => {
     e.preventDefault();
     if (newTodo.task !== '') {
       addNewTodo({
-        // id: v4(),
         ...newTodo,
-        isCompleted: false,
+        completed: false,
       });
       setNewTodo({ task: '', emoji: '' });
       setWarning(false);

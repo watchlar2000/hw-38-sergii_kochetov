@@ -1,7 +1,14 @@
-export const SET_TODO = '[TODOS] set todos';
-export const ADD_TODO = '[TODOS] add todo';
-export const UPDATE_TODO = '[TODOS] update todo';
-export const REMOVE_TODO = '[TODOS] remove todo';
+import {
+  addTodo,
+  getTodos,
+  removeTodo,
+  updateTodo,
+} from '../../components/Todos/todosApi';
+
+export const SET_TODO = '[Todos] set todos';
+export const ADD_TODO = '[Todos] add todo';
+export const UPDATE_TODO = '[Todos] update todo';
+export const REMOVE_TODO = '[Todos] remove todo';
 
 export function setTodosAction(payload) {
   return {
@@ -28,5 +35,35 @@ export function removeTodoAction(payload) {
   return {
     type: REMOVE_TODO,
     payload,
+  };
+}
+
+// thunk action creator
+export function setTodosRequestAction() {
+  return async function (dispatch) {
+    const todosData = await getTodos();
+    const todosReversed = todosData.reverse();
+    dispatch(setTodosAction(todosReversed));
+  };
+}
+
+export function addTodoRequestAction(todo) {
+  return async function (dispatch) {
+    const newTodo = await addTodo(todo);
+    dispatch(addTodoAction(newTodo));
+  };
+}
+
+export function updateTodoRequestAction(id) {
+  return async function (dispatch) {
+    await updateTodo(id);
+    dispatch(updateTodoAction({ id }));
+  };
+}
+
+export function removeTodoRequestAction(id) {
+  return async function (dispatch) {
+    await removeTodo(id);
+    dispatch(removeTodoAction({ id }));
   };
 }
