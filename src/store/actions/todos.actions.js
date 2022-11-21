@@ -57,8 +57,8 @@ export function addTodoRequestAction(todo) {
 export function updateTodoRequestAction(updatedTodo) {
   return async function (dispatch) {
     const { id } = updatedTodo;
-    dispatch(updateTodoAction(id));
     await updateTodo(updatedTodo);
+    dispatch(updateTodoAction(id));
   };
 }
 
