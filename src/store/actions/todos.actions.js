@@ -54,10 +54,11 @@ export function addTodoRequestAction(todo) {
   };
 }
 
-export function updateTodoRequestAction(id) {
+export function updateTodoRequestAction(updatedTodo) {
   return async function (dispatch) {
-    await updateTodo(id);
-    dispatch(updateTodoAction({ id }));
+    const { id } = updatedTodo;
+    dispatch(updateTodoAction(id));
+    await updateTodo(updatedTodo);
   };
 }
 

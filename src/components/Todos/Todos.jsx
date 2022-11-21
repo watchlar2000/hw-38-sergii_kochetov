@@ -33,7 +33,9 @@ export const Todos = () => {
   };
 
   const changeComplete = (id) => {
-    dispatch(updateTodoRequestAction(id));
+    const todo = todos.find((todo) => todo.id === id);
+    todo.completed = !todo.completed;
+    dispatch(updateTodoRequestAction(todo));
   };
 
   return (

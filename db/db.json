@@ -3,22 +3,22 @@
     {
       "id": 1,
       "task": "buy milk",
-      "completed": true
+      "completed": false
     },
     {
       "id": 2,
       "task": "buy bread",
-      "completed": false
+      "completed": true
     },
     {
       "id": 3,
       "task": "buy sugar",
-      "completed": false
+      "completed": true
     },
     {
       "task": "make an apple pie",
       "emoji": "🥧",
-      "completed": false,
+      "completed": true,
       "id": 4
     }
   ]

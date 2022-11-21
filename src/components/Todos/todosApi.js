@@ -21,12 +21,11 @@ export async function getTodo(id) {
   return res.json();
 }
 
-export async function updateTodo(id) {
-  const getTodoById = await getTodo(id);
-
+export async function updateTodo(updatedTodo) {
+  const { id, completed } = updatedTodo;
   await fetch(`${URL}/todos/${id}`, {
     method: 'PATCH',
-    body: JSON.stringify({ completed: !getTodoById.completed }),
+    body: JSON.stringify({ completed }),
     headers: {
       'Content-type': 'application/json',
     },
